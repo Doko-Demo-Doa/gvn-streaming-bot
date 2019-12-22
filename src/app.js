@@ -2,8 +2,9 @@ const Discord = require('discord.js')
 const _ = require('lodash')
 const client = new Discord.Client()
 
-client.on('ready', () => {
+client.on('ready', (a) => {
   console.log(`Logged in as ${client.user.tag}!`)
+  client.user.setActivity('Pin, Bet, Streaming notification bot')
 })
 
 const STREAMING_ROLE_ID = '652101620728856576'
