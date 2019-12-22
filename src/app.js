@@ -2,8 +2,6 @@ const Discord = require('discord.js')
 const _ = require('lodash')
 const client = new Discord.Client()
 
-// https://discord.gg/jeBMuSW
-
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`)
 })
