@@ -10,7 +10,7 @@ const STREAMING_ROLE_ID = '652101620728856576'
 client.on('voiceStateUpdate', (oldState, newState) => {
   const targetRole = newState.guild.roles.find(n => n.id === STREAMING_ROLE_ID)
 
-  if (newState.member.displayName !== 'Doko') return
+  // if (newState.member.displayName !== 'Doko') return
   if (!targetRole) return
 
   if (newState.streaming) {
