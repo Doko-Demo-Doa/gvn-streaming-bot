@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/Doko-Demo-Doa/gvn-streaming-bot#readme",
   "dependencies": {
-    "discord.js": "https://github.com/discordjs/discord.js.git"
+    "discord.js": "https://github.com/discordjs/discord.js.git",
+    "lodash": "^4.17.15"
   }
 }
