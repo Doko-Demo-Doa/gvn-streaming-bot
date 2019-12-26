@@ -2,6 +2,8 @@ const Discord = require('discord.js')
 const _ = require('lodash')
 const client = new Discord.Client()
 
+const { concat, uniq } = _
+
 client.on('ready', (a) => {
   console.log(`Logged in as ${client.user.tag}!`)
   client.user.setActivity('Pin, Bet, Streaming notification bot')
@@ -17,7 +19,7 @@ client.on('voiceStateUpdate', (oldState, newState) => {
   if (newState.streaming) {
     // Đang stream, set role.
     newState.member.edit({
-      roles: _.concat(newState.member.roles.map(n => n.id), targetRole.id, n => n)
+      roles: uniq(concat(newState.member.roles.map(n => n.id), targetRole.id, n => n))
     }).then((r) => {
       // console.log(r)
     }).catch(_ => {
