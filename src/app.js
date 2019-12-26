@@ -27,7 +27,7 @@ client.on('voiceStateUpdate', (oldState, newState) => {
     })
   } else {
     newState.member.edit({
-      roles: newState.member.roles.filter(o => o.id !== STREAMING_ROLE_ID)
+      roles: oldState.member.roles.filter(o => o.id !== STREAMING_ROLE_ID).map(n => n.id)
     }).then((r) => {
       // console.log(r)
     }).catch(_ => {
