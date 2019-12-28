@@ -13,25 +13,24 @@ const STREAMING_ROLE_ID = '652101620728856576'
 client.on('voiceStateUpdate', (oldState, newState) => {
   const targetRole = newState.guild.roles.find(n => n.id === STREAMING_ROLE_ID)
 
-  // if (newState.member.displayName !== 'Doko') return
   if (!targetRole) return
 
   if (newState.streaming) {
     // Đang stream, set role.
     newState.member.edit({
-      roles: uniq(concat(newState.member.roles.map(n => n.id), targetRole.id, n => n))
+      roles: uniq(concat(newState.member.roles.map(n => n.id), targetRole.id))
     }).then((r) => {
-      // console.log(r)
+      console.log(r)
     }).catch(_ => {
-      // console.log(_)
+      console.log(_)
     })
   } else {
     newState.member.edit({
       roles: oldState.member.roles.filter(o => o.id !== STREAMING_ROLE_ID).map(n => n.id)
     }).then((r) => {
-      // console.log(r)
+      console.log(r)
     }).catch(_ => {
-      // console.log(_)
+      console.log(_)
     })
   }
 })
