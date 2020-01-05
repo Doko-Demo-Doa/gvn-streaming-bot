@@ -12,6 +12,13 @@ client.on('ready', (a) => {
 const STREAMING_ROLE_ID = '652101620728856576'
 client.on('voiceStateUpdate', (oldState, newState) => {
   const targetRole = newState.guild.roles.find(n => n.id === STREAMING_ROLE_ID)
+  // targetRole.members.forEach(n => {
+  //   if (!n.voice.streaming) {
+  //     n.edit.edit({
+  //       roles: n.roles.filter(o => o.id !== STREAMING_ROLE_ID).map(n => n.id)
+  //     })
+  //   }
+  // })
 
   if (!targetRole) return
 
@@ -20,17 +27,17 @@ client.on('voiceStateUpdate', (oldState, newState) => {
     newState.member.edit({
       roles: uniq(concat(newState.member.roles.map(n => n.id), targetRole.id))
     }).then((r) => {
-      console.log(r)
+      // console.log(r)
     }).catch(_ => {
-      console.log(_)
+      // console.log(_)
     })
   } else {
     newState.member.edit({
-      roles: oldState.member.roles.filter(o => o.id !== STREAMING_ROLE_ID).map(n => n.id)
+      roles: newState.member.roles.filter(o => o.id !== STREAMING_ROLE_ID).map(n => n.id)
     }).then((r) => {
-      console.log(r)
+      // console.log(r)
     }).catch(_ => {
-      console.log(_)
+      // console.log(_)
     })
   }
 })
