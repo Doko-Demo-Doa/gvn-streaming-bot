@@ -29,7 +29,7 @@ client.on('ready', (a) => {
 })
 
 client.on('disconnect', () => {
-  looper && clearInterval(looper)
+  // looper && clearInterval(looper)
 })
 
 client.on('voiceStateUpdate', (oldState, newState) => {
