@@ -71,3 +71,4 @@ docs/
 *.db-*
 
 ormconfig.json
+__pycache__
