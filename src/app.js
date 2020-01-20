@@ -53,15 +53,15 @@ client.on('voiceStateUpdate', (oldState, newState) => {
     newState.member.edit({
       roles: uniq(concat(newState.member.roles.map(n => n.id), targetRole.id))
     }).then((r) => {
-      console.log(r)
+
     }).catch(_ => {
-      // console.log(_)
+      console.log(_)
     })
   } else {
     newState.member.edit({
       roles: newState.member.roles.filter(o => o.id !== STREAMING_ROLE_ID).map(n => n.id)
     }).then((r) => {
-      console.log(r)
+
     }).catch(_ => {
       console.log(_)
     })
