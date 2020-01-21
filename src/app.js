@@ -9,26 +9,32 @@ const STREAMING_ROLE_ID = '652101620728856576'
 
 let looper = null
 
+function startLooper (gvnServer) {
+  if (!looper) {
+    looper = setInterval(() => {
+      const targetRole = gvnServer.roles.find(n => n.id === STREAMING_ROLE_ID)
+      targetRole.members.forEach(n => {
+        if (!n.voice.streaming) {
+          n.edit({
+            roles: n.roles.filter(o => o.id !== STREAMING_ROLE_ID).map(n => n.id)
+          })
+        }
+      })
+    }, 60000)
+  }
+}
+
 client.on('ready', (a) => {
   console.log(`Logged in as ${client.user.tag}!`)
   client.user.setActivity('Pin, Bet, Streaming notification bot')
+  const gvnServer = client.guilds.find(n => n.id === GVN_SERVER_ID)
 
   try {
-    const gvnServer = client.guilds.find(n => n.id === GVN_SERVER_ID)
     if (gvnServer) {
-      looper = setInterval(() => {
-        const targetRole = gvnServer.roles.find(n => n.id === STREAMING_ROLE_ID)
-        targetRole.members.forEach(n => {
-          if (!n.voice.streaming) {
-            n.edit({
-              roles: n.roles.filter(o => o.id !== STREAMING_ROLE_ID).map(n => n.id)
-            })
-          }
-        })
-      }, 60000)
+      startLooper(gvnServer)
     }
   } catch (_) {
-    console.log(_)
+    startLooper(gvnServer)
   }
 })
 
