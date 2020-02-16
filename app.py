@@ -19,4 +19,13 @@ async def on_voice_state_update(member, before, after):
   stream_role_ref = discord.utils.get(member.guild.roles, id = STREAM_ROLE_ID)
   print(stream_role_ref)
 
+  if (after.self_stream == True):
+    await member.add_roles(stream_role_ref)
+    return
+  if (after.self_stream == False):
+    await member.remove_roles(stream_role_ref)
+
+def check_fault_role():
+  print('x')
+
 client.run(os.getenv("DISCORD_TOKEN"))
