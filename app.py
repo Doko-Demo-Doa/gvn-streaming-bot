@@ -17,6 +17,8 @@ client: Client = Client()
 @client.event
 async def on_ready():
   print('Logged in as {0.user}'.format(client))
+  activity = discord.Activity(name='Pin, Bet, Streaming notification bot', type=discord.ActivityType.playing)
+  await client.change_presence(activity=activity)
 
 async def check_role(guild: Guild):
   stream_role = utils.get(guild.roles, id = STREAM_ROLE_ID)
