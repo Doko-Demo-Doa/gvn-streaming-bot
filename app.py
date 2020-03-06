@@ -7,12 +7,10 @@ import asyncio
 from typing import List
 from discord import utils, Client, Guild, Member, VoiceState, Role
 
-StreamerList = List[Member]
-
 SERVER_ID = 249438409024733184
 STREAM_ROLE_ID = 652101620728856576
 
-active_streamers: StreamerList = []
+active_streamers = []
 
 client: Client = Client()
 
